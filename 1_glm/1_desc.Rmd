@@ -32,7 +32,7 @@ The tutorial uses the French MTPL data set available on [openML (ID 41214)](http
 
 ```{r}
 library(rgdal)
-# library(rgeos)
+library(rgeos)
 library(dplyr)
 library(ggplot2)
 library(gridExtra)
@@ -162,7 +162,9 @@ We have 6'780'013 individual car insurance policies and for each policy we have 
 - $\texttt{Density}$: density of inhabitants per km2 in the city of the living place of the driver
 - $\texttt{Region}$: regions in France (prior to 2016), as illustrated below
 
-![1_desc](Figure_FrenchRegions.PNG)
+<!-- ![1_desc](Figure_FrenchRegions.PNG) -->
+<!-- Figure 1 of https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3164764 -->
+![.](Figure_FrenchRegions.png)
 
 Please find some more charts on the raw data in the tutorial.
 
@@ -333,8 +335,8 @@ with the bonus-malus level, (d) younger people drive newer cars.
 Let us calculate the Pearson and Spearman correlation between the variables.
 
 ```{r}
-df_cor <- dat %>% 
-  select(Area, VehPower, VehAge, DrivAge, BonusMalus, Density) 
+df_cor <- dat %>%
+  select(Area, VehPower, VehAge, DrivAge, BonusMalus, Density)
 df_cor$Area <- as.numeric(df_cor$Area)
 df_cor$VehPower <- as.numeric(df_cor$VehPower)
 ```
@@ -363,10 +365,10 @@ As Region is available in the data, we are interested in plotting the claim freq
 First, let us calculate the metrics per region, transforming the categorical variables to numerical in order to be able to compare values. Mutating categorical variables to numerical is not ideal, but it allows to visualize data in a more convenient form and still derive some insights.
 
 ```{r}
-reg_sum <- dat %>% 
-  group_by(Region) %>% 
-  mutate(VehGas = factor(VehGas)) %>% 
-  mutate_at(c("Area", "VehPower", "VehGas"), as.numeric) %>% 
+reg_sum <- dat %>%
+  group_by(Region) %>%
+  mutate(VehGas = factor(VehGas)) %>%
+  mutate_at(c("Area", "VehPower", "VehGas"), as.numeric) %>%
   summarize(NrObs = length(Exposure),
             Exp = sum(Exposure),
             Freq = sum(ClaimNb) / sum(Exposure),
@@ -386,13 +388,14 @@ The visualizations can be done using data containing the boundaries of regions a
 First, we need to import the files which contain the map to be displayed. Geo data have some standard formats, which we are not going to discuss here. See the R packages `rgal` and `rgeos` for further information and links.
 
 ```{r}
-# Downloaded shapefiles from http://www.diva-gis.org/gData and extracted all the files from the zip file.
-area <- rgdal::readOGR(file.path("../../data/shapefiles", "FRA_adm2.shp"))
+# Downloaded shapefiles from http://www.diva-gis.org/gData and extracted all the "adm2" files to the shapefiles folder.
+area <- rgdal::readOGR("../0_data/shapefiles/FRA_adm2.shp")
 ```
 
 Second, we need to merge the aggregated information from the insurance data to the geographical data.
 
 ```{r}
+library(gpclib)
 reg_sum$id <- sapply(reg_sum$Region, substr, 2, 3)
 area_points <- fortify(area, region = "ID_1")  # convert to data.frame
 ```
@@ -446,7 +449,9 @@ Please find some more charts on the raw data in the tutorial.
 
 **Exercise:** In the tutorial, you find the subsequent charts (which describe the distribution of the variables $\texttt{Area}$, $\texttt{VehPower}$, $\texttt{VehAge}$, $\texttt{DrivAge}$, $\texttt{BonusMalus}$, $\texttt{VehGas}$ for each car brand  $\texttt{VehBrand}$ individually), write the code for them.
 
-![1_desc](Figure_percentages.PNG)
+<!-- ![1_desc](Figure_percentages.PNG) -->
+<!-- Figure 13 of https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3164764 -->
+![.](Figure_percentages.png)
 
 # Session Info
 
