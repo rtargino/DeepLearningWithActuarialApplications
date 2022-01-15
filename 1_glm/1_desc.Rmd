@@ -147,10 +147,9 @@ knitr::kable(head(freMTPL2freq))
 
 We briefly describe this data. See the `CASdatasets` reference manual [here](http://cas.uqam.ca/pub/web/CASdatasets-manual.pdf) for a description of the variables of the `freMTPLfre` dataset.
 
-We have 6'780'013 individual car insurance policies and for each policy we have 12 variables:
+We have `r nrow(freMTPL2freq)` individual car insurance policies and for each policy we have `r ncol(freMTPL2freq)` variables:
 
 - $\texttt{IDpol}$: policy number (unique identifier)
-- $\texttt{ClaimNb}$: number of claims on the given policy
 - $\texttt{Exposure}$: total exposure in yearly units
 - $\texttt{Area}$: area code (categorical, ordinal)
 - $\texttt{VehPower}$: power of the car (categorical, ordinal)
@@ -161,6 +160,8 @@ We have 6'780'013 individual car insurance policies and for each policy we have 
 - $\texttt{VehGas}$: diesel or regular fuel car (binary)
 - $\texttt{Density}$: density of inhabitants per km2 in the city of the living place of the driver
 - $\texttt{Region}$: regions in France (prior to 2016), as illustrated below
+- $\texttt{ClaimTotal}$: total value of claims (severity) on the given policy
+- $\texttt{ClaimNb}$: number of claims on the given policy
 
 <!-- ![1_desc](Figure_FrenchRegions.PNG) -->
 <!-- Figure 1 of https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3164764 -->

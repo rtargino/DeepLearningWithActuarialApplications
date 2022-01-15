@@ -452,10 +452,9 @@ plotMap &lt;- function(area_points, Var, label, clow, chigh) {
 </tbody>
 </table>
 <p>We briefly describe this data. See the <code>CASdatasets</code> reference manual <a href="http://cas.uqam.ca/pub/web/CASdatasets-manual.pdf">here</a> for a description of the variables of the <code>freMTPLfre</code> dataset.</p>
-<p>We have 6’780’013 individual car insurance policies and for each policy we have 12 variables:</p>
+<p>We have 678007 individual car insurance policies and for each policy we have 13 variables:</p>
 <ul>
 <li><span class="math inline">\(\texttt{IDpol}\)</span>: policy number (unique identifier)</li>
-<li><span class="math inline">\(\texttt{ClaimNb}\)</span>: number of claims on the given policy</li>
 <li><span class="math inline">\(\texttt{Exposure}\)</span>: total exposure in yearly units</li>
 <li><span class="math inline">\(\texttt{Area}\)</span>: area code (categorical, ordinal)</li>
 <li><span class="math inline">\(\texttt{VehPower}\)</span>: power of the car (categorical, ordinal)</li>
@@ -466,6 +465,8 @@ plotMap &lt;- function(area_points, Var, label, clow, chigh) {
 <li><span class="math inline">\(\texttt{VehGas}\)</span>: diesel or regular fuel car (binary)</li>
 <li><span class="math inline">\(\texttt{Density}\)</span>: density of inhabitants per km2 in the city of the living place of the driver</li>
 <li><span class="math inline">\(\texttt{Region}\)</span>: regions in France (prior to 2016), as illustrated below</li>
+<li><span class="math inline">\(\texttt{ClaimTotal}\)</span>: total value of claims (severity) on the given policy</li>
+<li><span class="math inline">\(\texttt{ClaimNb}\)</span>: number of claims on the given policy</li>
 </ul>
 <!-- ![1_desc](Figure_FrenchRegions.PNG) -->
 <!-- Figure 1 of https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3164764 -->
